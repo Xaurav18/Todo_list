@@ -7,6 +7,6 @@ app.listen(port, (req, res) => {
   console.log('you are listening to port:', port);
 });
 
-app.get('/', (req, res) => {
-  res.status(200).send('All is working');
+app.get('/about', (req, res) => {
+  res.status(200).send('All is well');
 });
