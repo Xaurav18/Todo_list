@@ -6,15 +6,25 @@ const connectDb = require('./db/connect');
 //Require dotenv
 require('dotenv').config();
 
+//req router
+const router = require('./routers/crud');
+
 //Middleware
-app.arguments(express.json());
+app.use(express.json());
+
+//Route
+app.use('/api/v1/crud');
 
 //Connection
 const start = async () => {
-  await connectDb(process.env.MONGO_CONNECT);
-  app.listen(port, (req, res) => {
-    console.log('your are listening to port:', port);
-  });
+  try {
+    await connectDb(process.env.MONGO_CONNECT);
+    app.listen(port, (req, res) => {
+      console.log('your are listening to port:', port);
+    });
+  } catch (error) {
+    console.log(error);
+  }
 };
 start();
 
